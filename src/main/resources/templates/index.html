@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Echo</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            widht: 100%;
+            position: relative;
+            background: #eee;
+        }
+
+        .echo {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 5em;
+            transform: translateX(-50%) translateY(-50%);
+            font-family: sans-serif, cursive;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .version {
+          display: inline-block;
+          position: absolute;
+          left: 1em;
+          top: 1em;
+        }
+    </style>
+
+</head>
+<body>
+    <p class="echo" th:text="${word}">Word</p>
+    <p class="version" th:text="${@environment.getProperty('echo.version')}">Version</p>
+</body>
+</html>
