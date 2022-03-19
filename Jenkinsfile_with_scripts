@@ -1,0 +1,25 @@
+def gv
+pipeline {
+    agent any
+
+    stages {
+        stage("init") {
+            steps {
+                script {
+                    gv = load "testscripts.groovy"
+                }
+            }
+        }
+        stage("scripts") {
+            steps {
+                script {
+                    def var = "sss";
+                    gv.buildFunction()
+                    gv.testFunction()
+                    def branch = gv.getCurrentBranch()
+                    echo branch
+                }
+            }
+        }
+    }
+}
