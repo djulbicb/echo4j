@@ -4,8 +4,6 @@ pipeline {
     stage ("Prompt for input") {
       steps {
         script {
-          echo "${res}"
-
           env.USERNAME = input message: 'Please enter the username',
                              parameters: [string(defaultValue: '',
                                           description: '',
