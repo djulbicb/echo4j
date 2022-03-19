@@ -3,8 +3,10 @@ pipeline {
 
     stages {
         stage('Build') {
-            expression {
-                JOB_NAME == "gittest"
+            when {
+                expression {
+                    JOB_NAME == "gittest"
+                }
             }
             steps {
                echo 'Building the applcation'
@@ -17,8 +19,10 @@ pipeline {
             }
         }
         stage('Testing') {
-            expression {
-                JOB_NAME != "gittest"
+            when {
+                expression {
+                    JOB_NAME != "gittest"
+                }
             }
             steps {
                echo "${JOB_NAME}"
