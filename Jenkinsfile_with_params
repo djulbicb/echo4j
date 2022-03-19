@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    parameters {
+    inpp {
         string (name: 'VERSION', defaultValue: '10', description: 'version to deploy on prod')
         choice(name: 'CHOICE', choices: ['1.1.0', '1.1.1'], description: 'some choice')
         booleanParam(name: 'BOOL', defaultValue: true, description: 'some bool')
