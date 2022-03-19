@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               def branchName = getCurrentBranch()
+               branchName = getCurrentBranch()
                echo "Branch is ${branchName}"
                echo '> Building the applcation'
             }
