@@ -4,26 +4,36 @@ pipeline {
     maven "maven-installation"
   }
   stages {
-     stage("Build jar") {
+     stage("Init") {
       steps {
         script {
-          echo "Building the application"
-          sh "mvn clean package"
+          echo "Testing the application"
+          echo "Execute pipeline for ${BRANCH_NAME}"
         }
       }
     }
 
-    stage("Build image") {
-        steps {
-          script {
-            echo "Building the docker image"
-            withCredentials([ usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                              sh 'docker build -t djulb/echo4j:3.0 .'
-                              sh "echo $PASS | docker login -u $USER --password-stdin"
-                              sh 'docker push djulb/echo4j:3.0'
-                          }
+   stage("Build Master") {
+      steps {
+        when {
+          expression {
+            BRANCH_NAME == "master"
           }
         }
+        echo "Running on master branch"
       }
+    }
+
+     stage("Build Jenkins") {
+      steps {
+        when {
+          expression {
+            BRANCH_NAME == "jenkins"
+          }
+        }
+        echo "Running on jenkins branch"
+      }
+    }
+    
   }
 }
