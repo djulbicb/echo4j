@@ -14,26 +14,26 @@ pipeline {
     }
 
    stage("Build Master") {
-      steps {
-        when {
-          expression {
-            BRANCH_NAME == "master"
-          }
+      when {
+        expression {
+          BRANCH_NAME == "master"
         }
+      }
+      steps {
         echo "Running on master branch"
       }
     }
 
-     stage("Build Jenkins") {
-      steps {
-        when {
-          expression {
-            BRANCH_NAME == "jenkins"
-          }
+   stage("Build Jenkins") {
+     when {
+        expression {
+          BRANCH_NAME == "jenkins"
         }
+      }
+      steps {
         echo "Running on jenkins branch"
       }
-    }
+   }
     
   }
 }
