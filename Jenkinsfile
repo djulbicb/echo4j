@@ -4,8 +4,7 @@ pipeline {
     maven "maven-installation"
   }
   stages {
-    stage("init") {
-         stages("Build jar") {
+     stage("Build jar") {
       steps {
         script {
           echo "Building the application"
@@ -13,16 +12,18 @@ pipeline {
         }
       }
     }
-  stage("Build image") {
-    steps {
-      script {
-        echo "Building the docker image"
-        withCredentials([ usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                          sh 'docker build -t djulb/echo4j:3.0 .'
-                          sh "echo $PASS | docker login -u $USER --password-stdin"
-                          sh 'docker push djulb/echo4j:3.0'
-                      }
+
+    stage("Build image") {
+        steps {
+          script {
+            echo "Building the docker image"
+            withCredentials([ usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                              sh 'docker build -t djulb/echo4j:3.0 .'
+                              sh "echo $PASS | docker login -u $USER --password-stdin"
+                              sh 'docker push djulb/echo4j:3.0'
+                          }
+          }
+        }
       }
-    }
   }
 }
