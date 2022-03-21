@@ -3,15 +3,17 @@ pipeline {
   tools {
     maven "maven-installation"
   }
-  stages("Build jar") {
-    steps {
-      script {
-        echo "Building the application"
-        sh "mvn clean package"
+  stages {
+    stage("init") {
+         stages("Build jar") {
+      steps {
+        script {
+          echo "Building the application"
+          sh "mvn clean package"
+        }
       }
     }
-  }
-  stages("Build image") {
+  stage("Build image") {
     steps {
       script {
         echo "Building the docker image"
