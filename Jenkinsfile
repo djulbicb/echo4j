@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // ovo je funkcija iz shared lib
-                    buildImage("docker-hub", "echoCiTest:1.0")
+                    buildImage("docker-hub", "echo-ci-test:1.0")
                 }
             }
         }
