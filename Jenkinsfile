@@ -1,5 +1,8 @@
 #!/usr/bin/env.groovy
-@Library('shared-library') // ovo je ime deklarisanog shared lib projekta u jenkinsu
+library identifier: 'shared-library@master', retriever: modernSCM(
+    [$class: 'GitSCMSource', remote: 'https://github.com/djulbicb/jenkins-shared.git', credentialsId: 'github']
+)
+@Library('shared-library')
 def gv
 pipeline {
     agent any
@@ -17,14 +20,9 @@ pipeline {
         stage ("build") {
             steps {
                 script {
-                    gv.buildFunction()
+                    // ovo je funkcija iz shared lib
+                    buildImage()
                 }
-            }
-        }
-        stage ("library") {
-            steps {
-                // Ovo je funkcija iz shared library projekta
-                buildJar()
             }
         }
     }
