@@ -2,7 +2,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'maven-installation'
     }
     stages {
         stage('increment version') {
@@ -46,7 +46,7 @@ pipeline {
         stage("Version bump") {
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'git-lab-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    withCredentials([usernamePassword(credentialsId: 'gitgit', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh 'git config user.email "djulb@example.com"'
                         sh 'git config --global user.name "Global for all projects"'
 
