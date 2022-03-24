@@ -22,7 +22,7 @@ pipeline {
         stage('build app') {
             steps {
                 script {
-                    echo "Building the application...${IMAGE_NAME}"
+                    echo "Building the application...${IMAGE_VERSION}"
                     sh "mvn clean package"
                 }
             }
