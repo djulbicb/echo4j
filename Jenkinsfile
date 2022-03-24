@@ -50,6 +50,8 @@ pipeline {
             steps{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'gitgit', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        def encodedPassword = URLEncoder.encode("$PASS",'UTF-8')
+
                         sh 'git config user.email "djulb@example.com"'
                         sh 'git config --global user.name "Global for all projects"'
 
@@ -59,11 +61,13 @@ pipeline {
 
                         //sh "git remote set-url origin https://${USER}:${PASS}@gitlab.com/djulb/echo4j.git"
 
-                        //  git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
-                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/djulbicb/echo4j.git"
+                        //  For github:  https://stackoverflow.com/questions/19922435/how-to-push-changes-to-github-after-jenkins-build-completes
+
                         sh "git add ."
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:maven-versioning'
+
+                        sh "git push https://${USER}:${encodedPassword}@github.com/${USER}/echo4j.git"
                     }
                 }
             }
