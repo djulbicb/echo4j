@@ -58,7 +58,9 @@ pipeline {
                         sh 'git config --list'
 
                         //sh "git remote set-url origin https://${USER}:${PASS}@gitlab.com/djulb/echo4j.git"
-                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/echo4j.git"
+
+                        //  git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/djulbicb/echo4j.git"
                         sh "git add ."
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:maven-versioning'
