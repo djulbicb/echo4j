@@ -52,7 +52,6 @@ pipeline {
                     // Created token as username as credentials
                     withCredentials([usernamePassword(credentialsId: 'gitwithtoken', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                         //  For github:  https://stackoverflow.com/questions/19922435/how-to-push-changes-to-github-after-jenkins-build-completes
-                        def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email djulb@example.com"
                         sh "git config user.name djulbicb"
                         sh "git add ."
