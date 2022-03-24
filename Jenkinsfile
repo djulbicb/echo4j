@@ -53,7 +53,7 @@ pipeline {
                         def encodedPassword = URLEncoder.encode("$PASS",'UTF-8')
 
                         sh 'git config user.email "djulb@example.com"'
-                        sh 'git config --global user.name "Global for all projects"'
+                        sh 'git config --global user.name "djulbicb"'
 
                         sh 'git status'
                         sh 'git branch'
