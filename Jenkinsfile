@@ -57,7 +57,7 @@ pipeline {
                         sh "git add ."
                         sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                         sh "git remote set-url origin https://{GIT_USERNAME}:{encodedPassword}@github.com/{GIT_USERNAME}/echo4j.git"
-                        sh "git push origin maven-versioning"
+                        sh "git push"
                     }
                 }
             }
