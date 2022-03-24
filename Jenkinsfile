@@ -12,9 +12,10 @@ pipeline {
                     sh "mvn build-helper:parse-version versions:set -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion}-SNAPSHOT versions:commit"
                     def matcher = readFile('pom.xml') =~ '<version>(.*)</version>'
                     def version = matcher[0][1]
-                    matcher = null
+                    matcher = null // throws exception Not seriazable regex. This cuts the link between
+
                     IMAGE_VERSION = "${version}-${BUILD_NUMBER}"
-                    sh "image name is ${IMAGE_VERSION}"
+                    sh "version name is ${IMAGE_VERSION}"
                 }
             }
         }
