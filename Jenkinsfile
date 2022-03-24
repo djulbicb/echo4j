@@ -15,7 +15,7 @@ pipeline {
                     matcher = null // throws exception Not seriazable regex. This cuts the link between
 
                     IMAGE_VERSION = "${version}-${BUILD_NUMBER}"
-                    sh "version name is ${IMAGE_VERSION}"
+                    echo "version name is ${IMAGE_VERSION}"
                 }
             }
         }
