@@ -67,7 +67,7 @@ pipeline {
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:maven-versioning'
 
-                        sh "git push https://${USER}:${encodedPassword}@github.com/${USER}/echo4j.git"
+                        sh "git push https://${USER}:${encodedPassword}@github.com/echo4j.git"
                     }
                 }
             }
