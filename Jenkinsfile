@@ -49,14 +49,15 @@ pipeline {
         stage("Version bump") {
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'gitgit', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    // Created token as username as credentials
+                    withCredentials([usernamePassword(credentialsId: 'gitwithtoken', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                         //  For github:  https://stackoverflow.com/questions/19922435/how-to-push-changes-to-github-after-jenkins-build-completes
                         def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email djulb@example.com"
                         sh "git config user.name djulbicb"
                         sh "git add ."
                         sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                        sh "git remote set-url origin https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/echo4j.git"
+                        sh "git remote set-url origin https://${GIT_TOKEN}@github.com/${GIT_USERNAME}/echo4j.git"
                         sh "git push origin HEAD:maven-versioning"
                     }
                 }
