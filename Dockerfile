@@ -1,5 +1,5 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 EXPOSE 8080
-ARG JAR_FILE=target/echo-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY ./target/java-maven-app-*.jar /usr/app
+WORKDIR /usr/app
+CMD java -jar java-maven-app-*.jar
