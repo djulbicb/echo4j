@@ -54,7 +54,7 @@ pipeline {
                         //  For github:  https://stackoverflow.com/questions/19922435/how-to-push-changes-to-github-after-jenkins-build-completes
                         // def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email djulb@example.com"
-                        sh "git config user.name djulbicb"
+                        sh "git config user.name jenkins"
                         sh "git add ."
                         sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                         sh "git remote set-url origin https://${GIT_TOKEN}@github.com/${GIT_USERNAME}/echo4j.git"
